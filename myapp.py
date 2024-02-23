@@ -140,10 +140,10 @@ def scan_reminder_days():
     for i in users:
         current_user: User = i
 
-        two_days_remain = get_midnight_time() + (days_in_seconds * 2)
+        two_days_remain = int(get_midnight_time() + (days_in_seconds * 2))
 
-        if current_user.expire < two_days_remain:
-            Print.print_red(current_user.username)
+        if current_user.expire and current_user.expire < two_days_remain:
+            Print.print_red(" ----> " + current_user.username)
 
 
 def scan_reminder_volume():
@@ -154,7 +154,7 @@ def scan_reminder_volume():
         remaining_data = current_user.data_limit - current_user.used_traffic
 
         if remaining_data < 1073741824:
-            Print.print_red(current_user.username)
+            Print.print_red(" ----> " + current_user.username)
 
 
 def show_and_renew_users(users):
